@@ -1,14 +1,20 @@
 #!/bin/bash
-# This shell script is used to install font on Ubuntu,move this file to the dir of your font file to install the font
-# sudo ./google-font-installer <filename>
+# This shell script is used to install google font on Ubuntu,tested on Ubuntu20.04
+# sudo ./google-font-installer <filepath>
 if [ $1 == ""];then
-    echo "Expected font file name"
+    echo Usage : $0 "<filepath>"
     exit 
-fi
+fi    
 if [ -f  $1 ];then
+    
     workpath=$(dirname $(readlink -f $0))
-    string=$1
-    dirname=${string/".zip"/""}
+    para=$1
+    if [ ${para##*.} != "zip"];then
+        echo Expect zip file
+        exit
+    fi
+    dirname=${para##*/}
+    dirname=${dirname%.zip}
     cd /usr/share/fonts
     mkdir $dirname
     cd $dirname 
