@@ -1,12 +1,11 @@
 #!/bin/bash
-# This shell script is used to install google font on Ubuntu,tested on Ubuntu20.04
+# install google font on Ubuntu,tested on Ubuntu20.04
 # sudo ./google-font-installer <filepath>
 if [ $1 == ""];then
     echo Usage : $0 "<filepath>"
     exit 
 fi    
 if [ -f  $1 ];then
-    
     workpath=$(dirname $(readlink -f $0))
     para=$1
     if [ ${para##*.} != "zip"];then
